@@ -16,7 +16,7 @@ uv run main.py
 And then on your website:
 
 ```javascript
-preres = await fetch("[your domain]/url/https://ogp.me")
+preres = await fetch("[your domain]/preview?url=https://ogp.me")
 res = await preres.json()
 ```
 
@@ -30,6 +30,22 @@ This results in
   "url": "https://ogp.me/"
 }
 ```
+# NOTE: nginx proxy
+
+if you're behind nginx,  you MUST add the following to your configuration, inside the location block:
+
+```
+add_header 'Access-Control-Allow-Credentials' 'true';
+add_header Cross-Origin-Resource-Policy cross-origin always;
+```
+
+## [TODO: explain that we can proxy images as well]
+```javascript
+img.src = "[your domain]/image?url=https%3A%2F%2Fogp.me%2Flogo.png"
+
+```
+
+
 
 # Docker
 
